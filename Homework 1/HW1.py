@@ -7,6 +7,7 @@ University of Notre Dame
 Homework 1: Programming assignment
 """
 
+from re import A
 import networkx as nx
 import matplotlib.pyplot as plt
 import numpy as np
@@ -27,7 +28,24 @@ layout = nx.spring_layout(G, seed=seed)
     This example is using NetwrokX's native implementation to compute similarities.
     Write a code to compute Jaccard's similarity and replace with this function.
 """
-pred = nx.jaccard_coefficient(G)
+def get_jaccard(G):
+    node_list  = list(nodes)
+    A = nx.adjacency_matrix(G)
+    A= A.to_numpy_array()
+    A_numer = np.matmul(A,A)
+    A_deno = np.ones_like(A_numer)
+    for i in range(len(A)):
+        for j in range(len(A)):
+            A_deno[i,j] = np.sum(A[i]) + np.sum(A[j]) - A_numer[i,j]
+    
+    Jaccard_matrix = A_numer/A_deno
+    item = (node_list[i],node_list[j],Jaccard_matrix[i][j] for i in range(len(A)) for j in range(len(A)))
+
+    return item
+
+pred = get_jaccard(G)
+
+
 
 
 # -- keep a copy of edges in the graph
@@ -50,7 +68,12 @@ nx.draw_networkx_edges(G, edgelist=old_edges, pos=layout, edge_color='gray', wid
     This example is randomly plotting similarities between 8 pairs of nodes in the graph. 
     Identify the ”Ginori”
 """
-ne = nx.draw_networkx_edges(G, edgelist=new_edges[:8], pos=layout, edge_color=np.asarray(metric[:8]), width=4, alpha=0.7)
+for i in range(len(A)):
+   if new_edges[i][0] == "Ginori":
+       break
+    
+
+ne = nx.draw_networkx_edges(G, edgelist=new_edges[i:i+len(A)], pos=layout, edge_color=np.asarray(metric[:8]), width=4, alpha=0.7)
 plt.colorbar(ne)
 plt.axis('off')
 plt.show()

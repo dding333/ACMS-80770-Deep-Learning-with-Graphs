@@ -47,26 +47,74 @@
 
 
 \title{Homework 1}
-\author{Your Name}
+\author{Your Name: Dong Ding}
 
 \begin{document}
 
 \maketitle
-
 \textbf{Problem 1:}
-
+\text{We have to make sure the matrix $I-\alpha A$ is invertible,} \text{otherwise the linear system has no solution.  } 
+\[det(I-\alpha A)=0\]
+\text{is equivalent to }
+\[det(A-I/\alpha )=0\]
+\text{We see that the largest value of $1/\alpha$}
+\text{for which the determinant}
+\text{is zero is the}
+\text{the largest eigenvalue of matrix A.}
+\text{In practice}
+\text{$\alpha$ is often set close to the threshold 1/k1.}
 
 \clearpage
 
 
 \textbf{Problem 2:}
+\text{The number of walks of length 1 between Vi and Vj} 
+\text{is denoted by Aij} \par
+\text{Number of walks of size 2 from Vi to Vj that go through Vk}
+\text{is equivalent to }
+\[ N_{ij}^{(2)} = \sum_{k=1}^{n} A_{ik} A_{kj} = [A^{2}]_{ij} \]
+
+
 
 
 \clearpage
 
 \textbf{Problem 3:}
+\text {The idea is to define a function which calculate the Jaccard matrix by the definition,}\par 
+\text {which is the common neighbors devided by their union neighbors.}\par
+\text {Thus, we need to convert the graph into its}
+\text{adjacency matrix. From question 2, we can get the common }\par
+\text{neighbors by multiplying the adjacency matrix.}\par
+\text{The union is their total neighbors minus the intersection. The code is shown below.}
+\begin{figure}[h]
+\includegraphics[width=8cm]{"pic1.png"}
+\centering
+\end{figure}
+
+\begin{figure}[h]
+\includegraphics[width=8cm]{"pic2.png"}
+\centering
+\end{figure}
+
+\clearpage
+
+\begin{figure}[h]
+\includegraphics[width=8cm]{"Figure_1.png"}
+\centering
+\end{figure}
 
 
+\text{The code to access the Ginori family}
+
+\begin{figure}[h]
+\includegraphics[width=8cm]{"pic3.png"}
+\centering
+\end{figure}
+
+\begin{figure}[h]
+\includegraphics[width=8cm]{"Figure_2.png"}
+\centering
+\end{figure}
 \clearpage
 
 
